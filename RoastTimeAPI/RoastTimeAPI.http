@@ -1,0 +1,6 @@
+@RoastTimeAPI_HostAddress = http://localhost:5111
+
+GET {{RoastTimeAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
