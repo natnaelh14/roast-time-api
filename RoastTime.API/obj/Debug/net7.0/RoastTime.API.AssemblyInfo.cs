@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RoastTime.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25bac881e91047b71070cb72dc35484227511731")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ae71e6b41356c59c73e5e81e8ee98c7cb4fb899")]
 [assembly: System.Reflection.AssemblyProductAttribute("RoastTime.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RoastTime.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
