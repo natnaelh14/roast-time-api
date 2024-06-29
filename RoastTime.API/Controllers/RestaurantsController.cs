@@ -32,4 +32,29 @@ public class RestaurantsController: ControllerBase
         // Map Domain model to DTO
         return Ok(mapper.Map<RestaurantDto>(restaurantDomainModel));
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        // Get Data From Database - Domain models
+        var regionsDomain = await restaurantRepository.GetAllAsync();
+
+        // Return DTOs
+        return Ok(mapper.Map<List<RestaurantDto>>(regionsDomain));
+    }
+    
+    [HttpGet]
+    [Route("{id:Guid}")]
+    public async Task<IActionResult> GetById([FromRoute] Guid id)
+    {
+        // Get Region Domain Model From Database
+        var regionDomain = await restaurantRepository.GetByIdAsync(id);
+
+        if (regionDomain == null)
+        {
+            return NotFound();
+        }
+        // Return DTO back to client
+        return Ok(mapper.Map<RestaurantDto>(regionDomain));
+    }
 }

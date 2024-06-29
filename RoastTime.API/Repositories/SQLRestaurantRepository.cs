@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using RoastTime.API.Models.Domain;
 using RoastTime.API.Data;
 
@@ -17,5 +18,15 @@ public class SQLRestaurantRepository: IRestaurantRepository
         await dbContext.Restaturants.AddAsync(restaurant);
         await dbContext.SaveChangesAsync();
         return restaurant;
+    }
+    
+    public async Task<List<Restaurant>> GetAllAsync()
+    {
+        return await dbContext.Restaturants.ToListAsync();
+    }
+    
+    public async Task<Restaurant?> GetByIdAsync(Guid id)
+    {
+        return await dbContext.Restaturants.FirstOrDefaultAsync(x => x.Id == id);
     }
 }
