@@ -11,6 +11,8 @@ public class AutoMapperProfiles: Profile
         CreateMap<Restaurant, RestaurantDto>().ReverseMap();
 
         CreateMap<AddRestaurantRequestDto, Restaurant>().ReverseMap();
+        
+        CreateMap<UpdateRestaurantRequestDto, Restaurant>().ReverseMap();
     }
 }
 

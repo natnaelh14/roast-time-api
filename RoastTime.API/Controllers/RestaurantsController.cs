@@ -57,4 +57,38 @@ public class RestaurantsController: ControllerBase
         // Return DTO back to client
         return Ok(mapper.Map<RestaurantDto>(regionDomain));
     }
+    
+    [HttpPut]
+    [Route("{id:Guid}")]
+    [ValidateModel]
+    public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRestaurantRequestDto updateRestaurantRequestDto)
+    {
+
+        // Map DTO to Domain Model
+        var restaurantDomainModel = mapper.Map<Restaurant>(updateRestaurantRequestDto);
+
+        // Check if region exists
+        restaurantDomainModel = await restaurantRepository.UpdateAsync(id, restaurantDomainModel);
+
+        if (restaurantDomainModel == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(mapper.Map<RestaurantDto>(restaurantDomainModel));
+    }
+    
+    [HttpDelete]
+    [Route("{id:Guid}")]
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    {
+        var restaurantDomainModel = await restaurantRepository.DeleteAsync(id);
+
+        if (restaurantDomainModel == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(mapper.Map<RestaurantDto>(restaurantDomainModel));
+    }
 }

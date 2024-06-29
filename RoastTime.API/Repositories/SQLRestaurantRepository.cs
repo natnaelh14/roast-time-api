@@ -29,4 +29,37 @@ public class SQLRestaurantRepository: IRestaurantRepository
     {
         return await dbContext.Restaturants.FirstOrDefaultAsync(x => x.Id == id);
     }
+    
+    public async Task<Restaurant?> UpdateAsync(Guid id, Restaurant restaurant)
+    {
+        var existingRestaurant = await dbContext.Restaturants.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (existingRestaurant == null)
+        {
+            return null;
+        }
+
+        existingRestaurant.Name = restaurant.Name;
+        existingRestaurant.Address = restaurant.Address;
+        existingRestaurant.Latitude = restaurant.Latitude;
+        existingRestaurant.Longitude = restaurant.Longitude;
+        existingRestaurant.Category = restaurant.Category;
+
+        await dbContext.SaveChangesAsync();
+        return existingRestaurant;
+    }
+    
+    public async Task<Restaurant?> DeleteAsync(Guid id)
+    {
+        var existingRestaurant = await dbContext.Restaturants.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (existingRestaurant == null)
+        {
+            return null;
+        }
+
+        dbContext.Restaturants.Remove(existingRestaurant);
+        await dbContext.SaveChangesAsync();
+        return existingRestaurant;
+    }
 }
