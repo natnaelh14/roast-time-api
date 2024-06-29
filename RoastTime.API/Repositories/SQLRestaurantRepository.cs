@@ -1,9 +1,7 @@
-using Microsoft.EntityFrameworkCore;
 using RoastTime.API.Models.Domain;
 using RoastTime.API.Data;
 
 namespace RoastTime.API.Repositories;
-
 
 public class SQLRestaurantRepository: IRestaurantRepository
 {

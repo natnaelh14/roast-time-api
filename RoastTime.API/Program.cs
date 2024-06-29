@@ -1,5 +1,7 @@
 ﻿using RoastTime.API.Data;
 using Microsoft.EntityFrameworkCore;
+using RoastTime.API.Mappings;
+using RoastTime.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,10 @@ builder.Services.AddSwaggerGen();
 //We are injecting the connection string from the appsettings.json file to the DbContext
 builder.Services.AddDbContext<RoastTimeDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RoastTimeConnectionString")));
+
+builder.Services.AddScoped<IRestaurantRepository, SQLRestaurantRepository>();
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 var app = builder.Build();
 
