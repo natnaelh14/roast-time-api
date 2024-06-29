@@ -10,7 +10,7 @@ public interface IRestaurantRepository
 
     Task<Restaurant> CreateAsync(Restaurant restaurant);
 
-    // Task<Restaurant?> UpdateAsync(Guid id, Restaurant restaurant);
+    Task<Restaurant?> UpdateAsync(Guid id, Restaurant restaurant);
     //
-    // Task<Restaurant?> DeleteAsync(Guid id);
+    Task<Restaurant?> DeleteAsync(Guid id);
 }
